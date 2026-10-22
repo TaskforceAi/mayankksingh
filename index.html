@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayankk Singh Digital Asset Desk | INR ↔ USDT P2P Desk</title>
+    <meta name="description" content="Buy & Sell USDT with a professional P2P process. Transparent quotes, verification-based dealing, clear payment flows, and compliance with applicable Indian laws.">
+    
+    <!-- Prevent Theme Flashing (FOUC) -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('msd-theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+            }
+        })();
+    </script>
+
+    <!-- Premium Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* =================================
+           CSS VARIABLES & THEME SYSTEM
+           ================================= */
+        :root {
+            /* Light Mode */
+            --bg-main: #FFFFFF;
+            --bg-secondary: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --indigo-primary: #4338CA;
+            --indigo-deep: #312E81;
+            --indigo-soft: #EEF2FF;
+            --text-main: #111827;
+            --text-secondary: #64748B;
+            --border-card: #E5E7EB;
+            --shadow-sm: 0 4px 20px -2px rgba(67, 56, 202, 0.06);
+            --shadow-md: 0 10px 30px -5px rgba(17, 24, 39, 0.08);
+            --shadow-lg: 0 20px 50px -10px rgba(17, 24, 39, 0.12);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Fluid Typography */
+            --fs-hero: clamp(1.75rem, 5vw, 3.25rem);
+            --fs-h2: clamp(1.4rem, 4vw, 2.5rem);
+            --fs-body: 1rem;
+            --fs-small: 0.875rem;
+        }
+
+        html.dark-mode {
+            /* Dark Mode */
+            --bg-main: #080B14;
+            --bg-secondary: #0F172A;
+            --bg-card: #111827;
+            --bg-elevated: #172033;
+            --indigo-primary: #818CF8;
+            --indigo-deep: #6366F1;
+            --indigo-soft: #1E293B;
+            --text-main: #F8FAFC;
+            --text-secondary: #A1A1AA;
+            --border-card: #273449;
+            --shadow-sm: 0 4px 20px -2px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 20px 50px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Reset & Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 70px; overflow-x: hidden; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: var(--fs-body);
+            transition: background-color 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* Focus States for Accessibility */
+        a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+            outline: 2px solid var(--indigo-primary);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 { font-family: 'Manrope', system-ui, sans-serif; font-weight: 800; line-height: 1.2; color: var(--text-main); }
+        .text-indigo { color: var(--indigo-primary); }
+
+        /* Container */
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+
+        /* Navbar */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-card);
+            transition: background 0.4s ease, border-color 0.4s ease;
+        }
+        html.dark-mode .navbar { background: rgba(8, 11, 20, 0.85); }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        
+        /* Image Logo */
+        .nav-logo { display: flex; align-items: center; gap: 0.5rem; }
+        .logo-img { 
+            height: 32px; 
+            width: auto;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(67, 56, 202, 0.2);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        .nav-logo:hover .logo-img { transform: scale(1.05); }
+        .logo-text-wrap { display: flex; flex-direction: column; line-height: 1.1; }
+        .logo-text { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--text-main); }
+        .logo-sub { font-size: 0.65rem; color: var(--text-secondary); font-weight: 500; }
+        
+        .nav-links { display: flex; gap: 0.25rem; align-items: center; }
+        .nav-link {
+            padding: 0.5rem 0.75rem; font-size: 0.85rem; font-weight: 500;
+            color: var(--text-secondary); border-radius: 8px; transition: var(--transition);
+        }
+        .nav-link:hover, .nav-link.active { color: var(--indigo-primary); background: var(--indigo-soft); }
+        .nav-actions { display: flex; align-items: center; gap: 0.5rem; }
+        .icon-btn {
+            width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center;
+            justify-content: center; color: var(--text-secondary); transition: var(--transition);
+            border: 1px solid var(--border-card); flex-shrink: 0;
+        }
+        .icon-btn:hover { background: var(--indigo-soft); color: var(--indigo-primary); border-color: var(--indigo-primary); }
+        #moonIcon { display: none; }
+        html.dark-mode #sunIcon { display: none; }
+        html.dark-mode #moonIcon { display: block; }
+        
+        /* Hamburger */
+        .hamburger { display: none; flex-direction: column; gap: 4px; padding: 8px; width: 40px; height: 40px; align-items: center; justify-content: center; flex-shrink: 0; }
+        .hamburger span { width: 22px; height: 2px; background: var(--text-main); transition: var(--transition); }
+
+        /* Hero */
+        .hero { padding: 5rem 0 3rem; background: var(--bg-secondary); border-bottom: 1px solid var(--border-card); }
+        .hero-container { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; align-items: center; }
+        .badge {
+            display: inline-flex; align-items: center; gap: 0.5rem; background: var(--bg-card);
+            border: 1px solid var(--border-card); color: var(--indigo-primary); font-size: 0.65rem;
+            font-weight: 600; padding: 0.4rem 0.8rem; border-radius: 99px; box-shadow: var(--shadow-sm);
+            text-transform: uppercase; letter-spacing: 0.05em;
+        }
+        .hero-title { font-size: var(--fs-hero); margin: 1.25rem 0 1rem; animation: fadeUp 0.8s ease-out; word-wrap: break-word; overflow-wrap: break-word; }
+        .hero-desc { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; max-width: 500px; animation: fadeUp 1s ease-out; }
+        .hero-actions { display: flex; gap: 0.75rem; animation: fadeUp 1.2s ease-out; flex-wrap: wrap; }
+        .hero-visual { animation: fadeIn 1.2s ease-out; }
+
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+            padding: 0.75rem 1.25rem; border-radius: 10px; font-weight: 600; font-size: 0.875rem;
+            transition: var(--transition); cursor: pointer; min-height: 44px;
+        }
+        .btn-primary { background: var(--indigo-primary); color: #fff; box-shadow: 0 4px 14px rgba(67, 56, 202, 0.25); }
+        html.dark-mode .btn-primary { box-shadow: 0 4px 14px rgba(129, 140, 248, 0.25); }
+        .btn-primary:hover { background: var(--indigo-deep); transform: translateY(-2px); }
+        .btn-outline { border: 1px solid var(--border-card); background: var(--bg-card); color: var(--text-main); }
+        .btn-outline:hover { border-color: var(--indigo-primary); color: var(--indigo-primary); }
+        .nav-cta { display: inline-flex; align-items: center; padding: 0.5rem 1rem !important; font-size: 0.8rem; }
+
+        /* Deal Snapshot Card */
+        .deal-card { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow-lg); }
+        .deal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-card); }
+        .deal-title { font-size: 1rem; font-family: 'Manrope', sans-serif; }
+        .deal-badge { font-size: 0.6rem; background: var(--indigo-soft); color: var(--indigo-primary); padding: 0.25rem 0.5rem; border-radius: 6px; font-weight: 600; }
+        .deal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+        .deal-item span { font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 0.25rem; }
+        .deal-item strong { font-size: 1.1rem; font-family: 'Manrope', sans-serif; font-weight: 700; }
+        .deal-footer { font-size: 0.7rem; color: var(--text-secondary); text-align: center; margin-top: 1rem; border-top: 1px solid var(--border-card); padding-top: 1rem; }
+
+        /* Sections */
+        .section { padding: 3.5rem 0; }
+        .section-muted { background: var(--bg-secondary); }
+        .section-indigo { background: var(--indigo-soft); }
+        .section-header { text-align: center; margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .section-label { display: block; font-size: 0.7rem; font-weight: 600; color: var(--indigo-primary); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+        .section-title { font-size: var(--fs-h2); margin-bottom: 0.5rem; }
+        .section-subtitle { color: var(--text-secondary); font-size: 0.9rem; max-width: 600px; margin: 0 auto; }
+
+        /* Grids & Cards */
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 1.25rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 1.25rem; }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1.5rem; }
+        .info-card { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 12px; padding: 1.5rem; transition: var(--transition); height: 100%; }
+        .info-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); border-color: var(--indigo-primary); }
+        .card-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--indigo-soft); color: var(--indigo-primary); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+        .card-title { font-size: 1.05rem; margin-bottom: 0.5rem; }
+        .card-text { color: var(--text-secondary); font-size: 0.85rem; }
+
+        /* How It Works */
+        .how-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+        .how-left .section-label { text-align: left; margin-bottom: 0.75rem; }
+        .how-left h2 { text-align: left; font-size: 2rem; margin-bottom: 1rem; }
+        .how-left p { text-align: left; color: var(--text-secondary); margin-bottom: 1.5rem; }
+        .checklist li { display: flex; gap: 0.75rem; margin-bottom: 0.75rem; color: var(--text-main); font-size: 0.9rem; align-items: flex-start; }
+        .checklist li svg { color: var(--indigo-primary); flex-shrink: 0; margin-top: 4px; }
+        
+        .steps-panel { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-md); }
+        .step-item { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+        .step-item:last-child { margin-bottom: 0; }
+        .step-number { width: 32px; height: 32px; background: var(--indigo-primary); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; flex-shrink: 0; box-shadow: 0 4px 10px rgba(67, 56, 202, 0.3); }
+        html.dark-mode .step-number { box-shadow: 0 4px 10px rgba(129, 140, 248, 0.3); }
+        .step-content h4 { font-size: 1rem; margin-bottom: 0.25rem; }
+        .step-content p { font-size: 0.85rem; color: var(--text-secondary); }
+
+        /* Buy/Sell */
+        .buysell-card { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 16px; padding: 2rem; transition: var(--transition); height: 100%; display: flex; flex-direction: column; }
+        .buysell-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+        .buysell-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-card); }
+        .buysell-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: var(--indigo-soft); color: var(--indigo-primary); flex-shrink: 0; }
+        .buysell-list { margin-bottom: 2rem; flex-grow: 1; }
+        .buysell-list li { display: flex; gap: 0.75rem; margin-bottom: 1rem; color: var(--text-secondary); font-size: 0.85rem; align-items: flex-start; }
+        .buysell-list li svg { flex-shrink: 0; margin-top: 2px; color: var(--indigo-primary); }
+
+        /* Platforms Area */
+        .platforms-container { margin-top: 3rem; padding-top: 3rem; border-top: 1px solid var(--border-card); text-align: center; }
+        .platforms-title { font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-main); }
+        .platforms-statement { max-width: 700px; margin: 0 auto 2.5rem; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+        .platforms-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 2rem; }
+        .platform-card { background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border-card); border-radius: 12px; padding: 1.25rem 2.5rem; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 1.1rem; transition: var(--transition); box-shadow: var(--shadow-sm); display: flex; align-items: center; justify-content: center; min-width: 160px; }
+        .platform-card:hover { transform: translateY(-4px); border-color: var(--indigo-primary); color: var(--indigo-primary); box-shadow: var(--shadow-md); }
+        .platforms-note { max-width: 600px; margin: 0 auto; font-size: 0.75rem; color: var(--text-secondary); line-height: 1.5; opacity: 0.9; }
+
+        /* Compliance Disclaimer Block */
+        .disclaimer-block { text-align: center; margin-top: 3rem; padding: 2rem; background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border-card); }
+        .disclaimer-block h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .disclaimer-block p { color: var(--text-secondary); font-size: 0.9rem; max-width: 700px; margin: 0 auto 2.5rem; }
+        .disclaimer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 1.25rem; text-align: left; }
+        .disclaimer-card { padding: 1rem; background: var(--bg-secondary); border-radius: 8px; border-left: 3px solid var(--indigo-primary); }
+        .disclaimer-card h4 { font-size: 0.9rem; margin-bottom: 0.25rem; }
+        .disclaimer-card p { font-size: 0.8rem; text-align: left; max-width: 100%; margin: 0; }
+
+        /* FAQ */
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 12px; margin-bottom: 1rem; overflow: hidden; transition: var(--transition); }
+        .faq-question { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem; cursor: pointer; font-weight: 600; font-family: 'Manrope', sans-serif; font-size: 0.9rem; min-height: 44px; }
+        .faq-toggle { transition: transform 0.3s; color: var(--text-secondary); flex-shrink: 0; }
+        .faq-item.active .faq-toggle { transform: rotate(180deg); color: var(--indigo-primary); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease-out; padding: 0 1.25rem; color: var(--text-secondary); font-size: 0.85rem; }
+        .faq-answer p { padding-bottom: 1.25rem; }
+
+        /* CTA Section */
+        .cta-box { background: linear-gradient(135deg, var(--indigo-primary), var(--indigo-deep)); border-radius: 24px; padding: 3.5rem 2rem; text-align: center; color: #fff; box-shadow: var(--shadow-lg); }
+        .cta-box .section-label { color: rgba(255,255,255,0.8); }
+        .cta-box h2 { color: #fff; font-size: var(--fs-h2); margin-bottom: 1rem; }
+        .cta-box p { color: rgba(255, 255, 255, 0.9); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; font-size: 0.9rem; }
+        .cta-box .btn { background: #fff; color: var(--indigo-deep); }
+        .cta-box .btn:hover { background: #F8FAFC; transform: translateY(-2px); }
+
+        /* Footer */
+        .footer { background: var(--bg-secondary); border-top: 1px solid var(--border-card); padding: 4rem 0 2rem; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+        .footer-desc { color: var(--text-secondary); margin-top: 1rem; max-width: 400px; font-size: 0.85rem; }
+        .footer-col h4 { font-size: 0.95rem; margin-bottom: 1rem; }
+        .footer-col ul { display: flex; flex-direction: column; gap: 0.75rem; }
+        .footer-col a { color: var(--text-secondary); font-size: 0.85rem; transition: var(--transition); }
+        .footer-col a:hover { color: var(--indigo-primary); }
+        .footer-disclaimer { background: var(--bg-main); border: 1px solid var(--border-card); padding: 1.5rem; border-radius: 12px; font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 2rem; text-align: center; line-height: 1.6; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid var(--border-card); font-size: 0.8rem; color: var(--text-secondary); }
+
+        /* =================================
+           RESPONSIVE DESIGN
+           ================================= */
+        @media (max-width: 1024px) {
+            .hero-container { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
+            .hero-content { display: flex; flex-direction: column; align-items: center; }
+            .hero-visual { max-width: 450px; margin: 0 auto; width: 100%; }
+            .how-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .how-left .section-label, .how-left h2, .how-left p { text-align: center; }
+            .how-left .checklist { max-width: 500px; margin: 0 auto; }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed; top: 64px; right: -100%; width: 80%; max-width: 320px; height: calc(100vh - 64px);
+                background: var(--bg-card); flex-direction: column; padding: 1.5rem;
+                gap: 0; transition: right 0.3s ease-in-out; align-items: stretch;
+                box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+                overflow-y: auto;
+            }
+            html.dark-mode .nav-links { box-shadow: -5px 0 30px rgba(0,0,0,0.5); }
+            .nav-links.nav-active { right: 0; }
+            .nav-link { padding: 1rem 0.5rem; border-bottom: 1px solid var(--border-card); width: 100%; font-size: 1rem; }
+            .hamburger { display: flex; }
+            .nav-cta { display: none; } 
+            .nav-links .nav-cta { display: flex; margin-top: 1rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+            .footer-desc { margin-left: auto; margin-right: auto; }
+            .footer-col ul { align-items: center; }
+            
+            /* Keep Digital Asset Desk visible on mobile */
+            .logo-text { font-size: 0.85rem; }
+            .logo-sub { font-size: 0.6rem; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 0.75rem; }
+            .hero { padding: 4rem 0 2rem; }
+            .hero-title { font-size: clamp(1.5rem, 7vw, 2rem); }
+            .hero-desc { font-size: 0.85rem; }
+            .hero-actions { flex-direction: column; width: 100%; }
+            .hero-actions .btn { width: 100%; font-size: 0.8rem; padding: 0.65rem 1rem; }
+            .deal-card { padding: 1.25rem; }
+            .deal-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+            .deal-item strong { font-size: 0.95rem; }
+            .deal-item span { font-size: 0.65rem; }
+            .section { padding: 2.5rem 0; }
+            .section-title { font-size: 1.35rem; }
+            .section-subtitle { font-size: 0.85rem; }
+            .buysell-card { padding: 1.5rem; }
+            .buysell-header { gap: 0.75rem; }
+            .buysell-icon { width: 36px; height: 36px; }
+            .buysell-icon svg { width: 18px; height: 18px; }
+            .buysell-list li { font-size: 0.8rem; gap: 0.5rem; }
+            .steps-panel { padding: 1.5rem; }
+            .step-item { gap: 0.75rem; }
+            .step-content h4 { font-size: 0.9rem; }
+            .step-content p { font-size: 0.8rem; }
+            .cta-box { padding: 2rem 1.25rem; }
+            .cta-box .btn { width: 100%; font-size: 0.8rem; }
+            .logo-img { height: 28px; }
+            .logo-text { font-size: 0.8rem; }
+            .logo-sub { font-size: 0.55rem; }
+            .platform-card { width: 100%; padding: 0.75rem; font-size: 0.95rem; }
+            .nav-actions { gap: 0.25rem; }
+            .icon-btn { width: 36px; height: 36px; }
+            .info-card { padding: 1.25rem; }
+            .card-title { font-size: 0.95rem; }
+            .card-text { font-size: 0.8rem; }
+        }
+
+        @media (max-width: 360px) {
+            .hero-title { font-size: 1.35rem; }
+            .badge { font-size: 0.55rem; padding: 0.3rem 0.6rem; }
+            .deal-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+            .nav-logo { gap: 0.35rem; }
+            .logo-img { height: 26px; }
+            .logo-text { font-size: 0.75rem; }
+            .logo-sub { font-size: 0.5rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#home" class="nav-logo">
+                <img src="assets/logo.png" alt="Mayank Singh Logo" class="logo-img" onerror="this.style.display='none'">
+                <div class="logo-text-wrap">
+                    <span class="logo-text">Mayank Singh</span>
+                    <span class="logo-sub">Digital Asset Desk</span>
+                </div>
+            </a>
+            
+            <nav class="nav-links" id="navLinks">
+                <a href="#how" class="nav-link">How It Works</a>
+                <a href="#buysell" class="nav-link">Buy / Sell</a>
+                <a href="#why" class="nav-link">Why Us</a>
+                <a href="#compliance" class="nav-link">Compliance</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="https://wa.me/qr/34C7JCQUACQOG1" target="_blank" rel="noopener" class="btn btn-primary nav-cta">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.004 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                    WhatsApp Now
+                </a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="icon-btn" id="themeToggle" aria-label="Toggle Theme">
+                    <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+                    <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="badge">INR ↔ USDT P2P DESK</span>
+                    <h1 class="hero-title">Buy &amp; Sell USDT with a Professional P2P Process.</h1>
+                    <p class="hero-desc">Transparent quotes, verification-based dealing, clear payment flows, and proper transaction records for users seeking a more structured INR–USDT experience.</p>
+                    
+                    <div class="hero-actions">
+                        <a href="https://wa.me/qr/34C7JCQUACQOG1" target="_blank" rel="noopener" class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.004 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                            WhatsApp Now
+                        </a>
+                        <a href="#how" class="btn btn-outline">Explore How It Works</a>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="deal-card">
+                        <div class="deal-header">
+                            <span class="deal-title">Deal Snapshot</span>
+                            <span class="deal-badge">Manually Updated</span>
+                        </div>
+                        <div class="deal-grid">
+                            <div class="deal-item">
+                                <span>Today's Indicative Rate</span>
+                                <strong style="color: var(--indigo-primary);">Request Current Rate</strong>
+                            </div>
+                            <div class="deal-item">
+                                <span>Asset</span>
+                                <strong>USDT</strong>
+                            </div>
+                            <div class="deal-item">
+                                <span>Currency</span>
+                                <strong>INR</strong>
+                            </div>
+                            <div class="deal-item">
+                                <span>Mode</span>
+                                <strong>P2P / OTC</strong>
+                            </div>
+                        </div>
+                        <div class="deal-item" style="border-top: 1px solid var(--border-card); padding-top: 1rem;">
+                            <span>Minimum Deal</span>
+                            <strong style="font-size: 1rem;">To be confirmed on WhatsApp</strong>
+                        </div>
+                        <p class="deal-footer">*Rate is indicative and manually updated. Final rate confirmed on WhatsApp based on market conditions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us -->
+        <section id="why" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">WHY CHOOSE US</span>
+                    <h2 class="section-title">A Cleaner Way to Handle INR–USDT P2P Transactions.</h2>
+                    <p class="section-subtitle">The focus is on payment clarity, verification, fraud awareness, and proper records.</p>
+                </div>
+                <div class="grid-4">
+                    <div class="info-card">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        </div>
+                        <h3 class="card-title">Transparent Rates</h3>
+                        <p class="card-text">Rate is shared before the deal. No hidden deduction, confusing spread, or last-minute surprise.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"></path><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c2.39 0 4.68.94 6.36 2.64"></path></svg>
+                        </div>
+                        <h3 class="card-title">Verified Process</h3>
+                        <p class="card-text">Verification-first dealing helps support responsible transactions and reduce avoidable fraud risks.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                        </div>
+                        <h3 class="card-title">Clear Settlement</h3>
+                        <p class="card-text">Payment and USDT release follow the agreed transaction flow and applicable confirmation requirements.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+                        </div>
+                        <h3 class="card-title">Record Friendly</h3>
+                        <p class="card-text">Basic transaction details can be maintained for reference, reconciliation, and tax discussions with your adviser.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section id="how" class="section section-muted">
+            <div class="container">
+                <div class="how-grid">
+                    <div class="how-left">
+                        <span class="section-label">PROCESS</span>
+                        <h2>How the Transaction Works</h2>
+                        <p>Keep the transaction flow simple, visible, and rule-based.</p>
+                        <ul class="checklist">
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Share whether you want to buy or sell USDT.</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Confirm amount, rate, payment method, and settlement window.</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Complete required verification before high-value dealing.</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Proceed only after both sides agree to the terms.</li>
+                        </ul>
+                    </div>
+                    <div class="how-right steps-panel">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Request a Quote</h4>
+                                <p>Send your buy/sell requirement on WhatsApp and request the latest indicative rate.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Verify &amp; Confirm</h4>
+                                <p>Complete the required verification and confirm deal size, payment method, and transaction terms.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Payment / Transfer</h4>
+                                <p>Proceed with INR payment or USDT transfer only through the agreed route.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Settlement Confirmation</h4>
+                                <p>Treat the transaction as complete only after the relevant payment and transfer confirmations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buy / Sell -->
+        <section id="buysell" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">BUY / SELL</span>
+                    <h2 class="section-title">Buy USDT. Sell USDT. Keep It Professional.</h2>
+                </div>
+                <div class="grid-2">
+                    <div class="buysell-card">
+                        <div class="buysell-header">
+                            <div class="buysell-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                            </div>
+                            <div>
+                                <h3 class="card-title" style="margin: 0; font-size: 1.1rem;">For Buyers — Buy USDT with INR</h3>
+                                <span class="card-text" style="font-size: 0.8rem;">Clear rate before payment</span>
+                            </div>
+                        </div>
+                        <ul class="buysell-list">
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Wallet and network confirmation before transfer</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Suitable for verified users and repeat buyers</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> No investment recommendation or trading promise</li>
+                        </ul>
+                        <a href="https://wa.me/qr/34C7JCQUACQOG1" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy USDT</a>
+                    </div>
+
+                    <div class="buysell-card">
+                        <div class="buysell-header">
+                            <div class="buysell-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><polyline points="23 20 23 14 17 14"></polyline><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path></svg>
+                            </div>
+                            <div>
+                                <h3 class="card-title" style="margin: 0; font-size: 1.1rem;">For Sellers — Sell USDT for INR</h3>
+                                <span class="card-text" style="font-size: 0.8rem;">Rate and quantity confirmation before transaction</span>
+                            </div>
+                        </div>
+                        <ul class="buysell-list">
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> INR settlement according to the agreed payment method</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Transaction records for reconciliation</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Verification and fraud-awareness procedures</li>
+                        </ul>
+                        <a href="https://wa.me/qr/34C7JCQUACQOG1" target="_blank" rel="noopener" class="btn btn-outline" style="width: 100%;">Sell USDT</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Compliance Section -->
+        <section id="compliance" class="section section-indigo">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">COMPLIANCE &amp; RESPONSIBLE DEALING</span>
+                    <h2 class="section-title">Responsible Digital Asset Dealing. Compliance Comes First.</h2>
+                    <p class="section-subtitle">We prioritize transparent dealing, appropriate verification, transaction record-keeping, and compliance with applicable Indian laws and taxation requirements.</p>
+                </div>
+                <div class="grid-3">
+                    <div class="info-card">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </div>
+                        <h3 class="card-title">FIU-IND Registered Platforms</h3>
+                        <p class="card-text" style="margin-bottom: 1rem;">We prioritize using digital asset platforms whose relevant FIU-IND registration status has been verified, where applicable.</p>
+                        <div class="platforms-grid" style="justify-content: flex-start; margin-bottom: 0;">
+                            <a href="https://www.binance.com/" target="_blank" rel="noopener noreferrer" class="platform-card" style="width: 100%; padding: 0.75rem 1rem; font-size: 0.9rem;">Binance</a>
+                            <a href="https://coindcx.com/" target="_blank" rel="noopener noreferrer" class="platform-card" style="width: 100%; padding: 0.75rem 1rem; font-size: 0.9rem;">CoinDCX</a>
+                            <a href="https://mudrex.com/" target="_blank" rel="noopener noreferrer" class="platform-card" style="width: 100%; padding: 0.75rem 1rem; font-size: 0.9rem;">Mudrex</a>
+                        </div>
+                        <p class="card-text" style="font-size: 0.75rem; margin-top: 0.5rem;">These platforms are provided as references identified by the website owner. Verify the relevant entity and current FIU-IND registration status before publishing any specific claim.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                        </div>
+                        <h3 class="card-title">Committed to Applicable Indian Tax Laws</h3>
+                        <p class="card-text">We are committed to complying with applicable Indian taxation, TDS, reporting, and transaction record-keeping requirements relevant to our activities.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+                        </div>
+                        <h3 class="card-title">Verification &amp; Responsible Records</h3>
+                        <p class="card-text">Appropriate verification, transaction documentation, and payment confirmations support responsible dealing, subject to applicable legal requirements and privacy safeguards.</p>
+                    </div>
+                </div>
+
+                <div class="disclaimer-block">
+                    <h3>Responsible Dealing Is Non-Negotiable.</h3>
+                    <p>USDT and similar crypto assets are virtual digital assets and are not legal tender in India. Users should understand applicable tax, TDS, KYC, AML, and record-keeping obligations before transacting. This website does not claim to be an exchange, bank, payment institution, investment adviser, or government-approved platform.</p>
+                    <div class="disclaimer-grid">
+                        <div class="disclaimer-card">
+                            <h4>KYC-aware dealing</h4>
+                            <p>Verification required for safety and fraud control.</p>
+                        </div>
+                        <div class="disclaimer-card">
+                            <h4>Tax awareness</h4>
+                            <p>Compliance with applicable Indian tax and TDS considerations.</p>
+                        </div>
+                        <div class="disclaimer-card">
+                            <h4>No profit promise</h4>
+                            <p>No claim of guaranteed returns or investment advice.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="section section-muted">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">FAQ</span>
+                    <h2 class="section-title">Questions People Ask Before Dealing in USDT P2P.</h2>
+                </div>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>How can I buy USDT in India?</span>
+                            <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You can buy USDT through our P2P desk by requesting a quote on WhatsApp, agreeing on the rate and quantity, making the INR payment, and receiving the USDT in your wallet.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>How can I sell USDT for INR?</span>
+                            <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Message us on WhatsApp to confirm the rate and quantity. Transfer the USDT to the agreed wallet address, and receive INR settlement according to the agreed payment mode.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>Is USDT legal in India?</span>
+                            <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>USDT is a virtual digital asset rather than legal tender, and applicable laws and tax obligations must be considered. Please consult a legal advisor for personalized legal advice.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>Is KYC required?</span>
+                            <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, verification may be required depending on the platform, transaction, and applicable obligations to ensure a secure environment for all parties.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>What payment methods are supported?</span>
+                            <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We support standard INR payment methods as agreed upon during the verification process. Payment mode is confirmed before transaction execution.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>Do you guarantee instant settlement?</span>
+                            <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>No. Settlement depends on payment confirmation, network confirmation, verification, and the relevant banking or payment system.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section id="contact" class="section">
+            <div class="container">
+                <div class="cta-box">
+                    <span class="section-label">START RESPONSIBLY</span>
+                    <h2>Want Today's USDT Rate?</h2>
+                    <p>Send your requirement on WhatsApp: buy or sell, quantity, preferred payment method, and city. You can then discuss the current indicative quote and transaction process.</p>
+                    <a href="https://wa.me/qr/34C7JCQUACQOG1" target="_blank" rel="noopener" class="btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.004 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                        WhatsApp Mayank
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="nav-logo">
+                        <img src="assets/logo.png" alt="Mayank Singh Logo" class="logo-img" onerror="this.style.display='none'">
+                        <div class="logo-text-wrap">
+                            <span class="logo-text">Mayankk Singh</span>
+                            <span class="logo-sub">Digital Asset Desk</span>
+                        </div>
+                    </div>
+                    <p class="footer-desc">An information-based P2P desk for INR ↔ USDT transactions. Built for transparency, verification, and clear record-keeping.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#how">How It Works</a></li>
+                        <li><a href="#buysell">Buy / Sell</a></li>
+                        <li><a href="#why">Why Us</a></li>
+                        <li><a href="#compliance">Compliance</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Platform References</h4>
+                    <ul>
+                        <li><a href="https://www.binance.com/referral/earn-together/refer2earn-usdc/claim?hl=en&ref=GRO_28502_J8JKV" target="_blank" rel="noopener">Binance</a></li>
+                        <li><a href="https://coindcx.com/" target="_blank" rel="noopener">CoinDCX</a></li>
+                        <li><a href="https://mudrex.com/" target="_blank" rel="noopener">Mudrex</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-disclaimer">
+                Information on this website is provided for general informational purposes only and does not constitute personalized financial, investment, or tax advice. Digital asset transactions involve risk. Users should independently assess the relevant risks and seek qualified professional advice where appropriate.
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Mayank Singh Digital Asset Desk. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            initThemeToggle();
+            initMobileMenu();
+            initScrollSpy();
+        });
+
+        function initThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            const sunIcon = document.getElementById('sunIcon');
+            const moonIcon = document.getElementById('moonIcon');
+            updateThemeIcons();
+            themeToggle.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark-mode');
+                if (document.documentElement.classList.contains('dark-mode')) {
+                    localStorage.setItem('msd-theme', 'dark');
+                } else {
+                    localStorage.setItem('msd-theme', 'light');
+                }
+                updateThemeIcons();
+            });
+            function updateThemeIcons() {
+                const isDark = document.documentElement.classList.contains('dark-mode');
+                sunIcon.style.display = isDark ? 'block' : 'none';
+                moonIcon.style.display = isDark ? 'none' : 'block';
+                themeToggle.setAttribute('aria-label', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+            }
+        }
+
+        function initMobileMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            hamburger.addEventListener('click', () => { navLinks.classList.toggle('nav-active'); });
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => { navLinks.classList.remove('nav-active'); });
+            });
+        }
+
+        function initScrollSpy() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 80;
+                    if (window.scrollY >= sectionTop) { current = section.getAttribute('id'); }
+                });
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) { link.classList.add('active'); }
+                });
+            });
+        }
+
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-answer').style.maxHeight = null;
+                }
+            });
+            faqItem.classList.toggle('active');
+            if (faqItem.classList.contains('active')) {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            } else {
+                answer.style.maxHeight = null;
+            }
+        }
+    </script>
+</body>
+</html>
